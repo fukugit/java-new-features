@@ -29,5 +29,6 @@ public class LambdaFeature {
   @FunctionalInterface
   interface Run3{
       public String show(String name);
+      public default String getName(String name) {return name;};
   }
 }
