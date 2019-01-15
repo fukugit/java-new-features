@@ -13,7 +13,8 @@ The following explain Java feature in each classes.
 ### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
 2. [Function method](src/main/java/jp/co/example/java8/FunctionFeature.java)  
-2. [Stream of collect as Collector](src/main/java/jp/co/example/java8/CollectorFeature.java)  
+3. [Stream](src/main/java/jp/co/example/java8/StreamFeature.java)  
+4. [Stream of collect as Collector](src/main/java/jp/co/example/java8/CollectorFeature.java)  
 
 ## Demo
 None.  
