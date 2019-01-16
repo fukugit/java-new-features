@@ -16,6 +16,7 @@ public class StreamFeature {
     List<String> stream1 = Arrays.asList("Test1", "Test1");
     stream1.stream().forEach(s -> System.out.println(s));
     
+    
     // map
     // The feature can change the value in the stream.
     List<String> map1 = Arrays.asList("Test2", "Test2");
@@ -29,10 +30,12 @@ public class StreamFeature {
     List<TestMap> map3result = map3.stream().map(TestMap::new).collect(Collectors.toList());
     map3result.stream().map(s -> s.getName()).forEach(System.out::println);
     
+    
     // filter
     // The feature can judge the behavior based on condition, such as "if" statement.
     List<String> stream5 = Arrays.asList("Test5", "Test5");
     stream5.stream().filter(s -> s.length() > 4).forEach(System.out::println);
+    
     
     // Judgement for collection
     // Checking, whether the all of values in List is empty.
