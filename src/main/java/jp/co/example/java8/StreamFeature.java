@@ -30,6 +30,22 @@ public class StreamFeature {
     map3result.stream().map(s -> s.getName()).forEach(System.out::println);
     
     // filter
+    // The feature can judge the behavior based on condition, such as "if" statement.
+    List<String> stream5 = Arrays.asList("Test5", "Test5");
+    stream5.stream().filter(s -> s.length() > 4).forEach(System.out::println);
+    
+    // Judgement for collection
+    // Checking, whether the all of values in List is empty.
+    List<String> stream6 = Arrays.asList("Test6", "Test6");
+    System.out.println(stream6.stream().allMatch(s -> !s.isEmpty())); //true
+    
+    // The case of the one of the value condition in List is true, result should be true.
+    List<String> stream7 = Arrays.asList("Test7", "Test77777");
+    System.out.println(stream7.stream().anyMatch(s -> s.length() > 7)); //true
+    
+    // Checking, whether nothing true condition in the List.
+    List<String> stream8 = Arrays.asList("Test8", "Test8");
+    System.out.println(stream8.stream().noneMatch(s -> s.startsWith("B"))); //true
     
     // collect
     
