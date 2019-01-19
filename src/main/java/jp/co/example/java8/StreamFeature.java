@@ -19,15 +19,15 @@ public class StreamFeature {
     
     // map
     // The feature can change the value in the stream.
-    List<String> map1 = Arrays.asList("Test2", "Test2");
-    map1.stream().map(s -> "[" + s + "]").forEach(System.out::println);
+    List<String> list1 = Arrays.asList("Test2", "Test2");
+    list1.stream().map(s -> "[" + s + "]").forEach(System.out::println);
     
-    List<String> map2 = Arrays.asList("Test3", "Test3");
-    List<String> map2result = map2.stream().map(s -> "[" + s + "]").collect(Collectors.toList());
+    List<String> list2 = Arrays.asList("Test3", "Test3");
+    List<String> map2result = list2.stream().map(s -> "[" + s + "]").collect(Collectors.toList());
     map2result.stream().forEach(System.out::println);
     
-    List<String> map3 = Arrays.asList("Test4", "Test4");
-    List<TestMap> map3result = map3.stream().map(TestMap::new).collect(Collectors.toList());
+    List<String> list3 = Arrays.asList("Test4", "Test4");
+    List<TestMap> map3result = list3.stream().map(TestMap::new).collect(Collectors.toList());
     map3result.stream().map(s -> s.getName()).forEach(System.out::println);
     
     
@@ -52,6 +52,8 @@ public class StreamFeature {
     
     // collect
     
+    // stream for map.
+    // https://qiita.com/megmogmog1965/items/414e71913ea080232396
   }
   private static class TestMap {
     public TestMap(String name) {
