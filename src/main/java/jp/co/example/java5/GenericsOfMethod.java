@@ -24,6 +24,15 @@ public class GenericsOfMethod {
     Map<String, String> map2 = getHashMap();
     map2.put("key", "val");
     map2.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).forEach(System.out::println);
+    
+    // extends
+    List<Integer> test3 = getList(Integer.valueOf(1));
+    test3.stream().forEach(System.out::println);
+    
+    List<Long> test4 = getList(2L);
+    test4.stream().forEach(System.out::println);
+    
+    // https://qiita.com/rodentia/items/b36d134fa24867ba4d63
   }
 
   private static <T> T get(T name) {
@@ -38,5 +47,11 @@ public class GenericsOfMethod {
 
   public static <K, V> HashMap<K, V> getHashMap(){
     return new HashMap<K, V>();
+  }
+  
+  private static <T extends Number> List<T> getList(T id) {
+    List<T> list = new ArrayList<>();
+    list.add(id);
+    return list;
   }
 }
