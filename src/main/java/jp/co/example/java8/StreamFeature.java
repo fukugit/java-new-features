@@ -59,6 +59,9 @@ public class StreamFeature {
     
     // stream for map.
     // https://qiita.com/megmogmog1965/items/414e71913ea080232396
+    
+    // findFirst
+    // https://qiita.com/kumazo/items/284098c530fceb05805c
   }
   private static class TestMap {
     public TestMap(String name) {
