@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jp.co.example.java5.EnumFeature.Result;
+
 public class StreamFeature {
 
   public static void main(String[] args) {
@@ -51,6 +53,9 @@ public class StreamFeature {
     System.out.println(stream8.stream().noneMatch(s -> s.startsWith("B"))); //true
     
     // collect
+    List<String> stream9 = Arrays.asList("Test9", "Test9-2");
+    List<String> result9 = stream9.stream().filter(s -> "Test9-2".equals(s.toString())).collect(Collectors.toList());
+    result9.forEach(System.out::println);  
     
     // stream for map.
     // https://qiita.com/megmogmog1965/items/414e71913ea080232396
