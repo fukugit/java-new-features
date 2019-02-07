@@ -1,7 +1,9 @@
 package jp.co.example.java8;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import jp.co.example.java5.EnumFeature.Result;
@@ -57,7 +59,16 @@ public class StreamFeature {
     List<String> result9 = stream9.stream().filter(s -> "Test9-2".equals(s.toString())).collect(Collectors.toList());
     result9.forEach(System.out::println);  
     
-    // stream for map.
+    // Using stream for map object.
+    Map<String, String> map = new HashMap<>() {
+      {
+          put("Test10-1", "1");
+          put("Test10-2", "2");
+          put("Test10-3", "3");
+      }
+    };
+    map.entrySet().stream()
+      .map(s -> s.getKey() + ":" + s.getValue()).forEach(System.out::println);
     // https://qiita.com/megmogmog1965/items/414e71913ea080232396
     
     // findFirst
