@@ -15,7 +15,7 @@ The following explain Java feature in each classes.
 2. [Function method](src/main/java/jp/co/example/java8/FunctionFeature.java)  
 3. [Stream](src/main/java/jp/co/example/java8/StreamFeature.java)  
 4. [Stream of collect as Collector](src/main/java/jp/co/example/java8/CollectorFeature.java)  
-
+5. [FunctionalInterface](src/main/java/jp/co/example/java8/FunctionalInterfaceFeature.java)  
 ## Demo
 None.  
 <br/>
