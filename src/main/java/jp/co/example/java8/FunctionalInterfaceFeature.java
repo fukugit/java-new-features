@@ -3,12 +3,16 @@ package jp.co.example.java8;
 public class FunctionalInterfaceFeature {
 
   public static void main(String[] args) {
-    Book book = (String subject) -> {return "Subject : " + subject;};
-    System.out.println(book.showTitle("AAA"));
+    Book book1 = (String subject) -> {return "Subject : " + subject;};
+    Book book2 = get();
+    System.out.println(book1.showTitle("AAA"));
+    System.out.println(book2.showTitle("bbb"));
+  }
+  private static Book get() {
+    return s -> s.toUpperCase();
   }
   @FunctionalInterface
   interface Book{
       public String showTitle(String name);
   }
 }
-
