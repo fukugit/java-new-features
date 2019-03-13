@@ -12,6 +12,7 @@ public class FunctionFeature {
     Function<Integer, String> function1 = (i) -> { return "Test1 : " + i; };
     String result1 = function1.apply(1);
     System.out.println(result1);
+    function1.apply(1);
     
     // Consumer<T>
     // Represents an operation that accepts a single input argument and returns no result.
