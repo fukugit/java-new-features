@@ -60,15 +60,15 @@ public class StreamFeature {
     result9.forEach(System.out::println);  
     
     // Using stream for map object.
-//    Map<String, String> map = new HashMap<>() {
-//      {
-//          put("Test10-1", "1");
-//          put("Test10-2", "2");
-//          put("Test10-3", "3");
-//      }
-//    };
-//    map.entrySet().stream()
-//      .map(s -> s.getKey() + ":" + s.getValue()).forEach(System.out::println);
+    Map<String, String> map = new HashMap<>() {
+      {
+          put("Test10-1", "1");
+          put("Test10-2", "2");
+          put("Test10-3", "3");
+      }
+    };
+    map.entrySet().stream()
+      .map(s -> s.getKey() + ":" + s.getValue()).forEach(System.out::println);
     // https://qiita.com/megmogmog1965/items/414e71913ea080232396
     
     // findFirst
