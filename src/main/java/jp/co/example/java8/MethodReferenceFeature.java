@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class MethodReferenceFeature {
     public void get() {
-        List<String> list = Arrays.asList("AA", "BB", "CC");
+        List<String> list = Arrays.asList("1", "2", "3");
         List<Integer> results = list.stream().map(this::convert).collect(Collectors.toList());
     }
     private Integer convert(String str) {
