@@ -1,10 +1,8 @@
 package jp.co.example.java8;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 import jp.co.example.java5.EnumFeature.Result;
 
@@ -25,7 +23,7 @@ public class StreamFeature {
     // The feature can change the value in the stream.
     List<String> list1 = Arrays.asList("Test2", "Test2");
     list1.stream().map(s -> "[" + s + "]").forEach(System.out::println);
-    
+
     List<String> list2 = Arrays.asList("Test3", "Test3");
     List<String> map2result = list2.stream().map(s -> "[" + s + "]").collect(Collectors.toList());
     map2result.stream().forEach(System.out::println);
@@ -69,6 +67,12 @@ public class StreamFeature {
     };
     map.entrySet().stream()
       .map(s -> s.getKey() + ":" + s.getValue()).forEach(System.out::println);
+
+    // String to Long
+    List<String> stream10 = Arrays.asList("100", "200");
+    List<Long> result10 = stream10.stream().map(Long::valueOf).collect(Collectors.toList());
+    result10.stream().forEach(System.out::println);
+
     // https://qiita.com/megmogmog1965/items/414e71913ea080232396
     
     // findFirst
