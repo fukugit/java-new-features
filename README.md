@@ -16,6 +16,7 @@ The following explain Java feature in each classes.
 3. [Stream](src/main/java/jp/co/example/java8/StreamFeature.java)  
 4. [Stream of collect as Collector](src/main/java/jp/co/example/java8/CollectorFeature.java)  
 5. [FunctionalInterface](src/main/java/jp/co/example/java8/FunctionalInterfaceFeature.java)  
+6. [OptionalFeature](src/main/java/jp/co/example/java8/OptionalFeature.java)  
 ## Demo
 None.  
 <br/>
