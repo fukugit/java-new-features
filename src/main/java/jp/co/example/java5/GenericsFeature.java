@@ -14,15 +14,10 @@ public class GenericsFeature {
         Book book = new BookImpl();
         book.getTitle("AAA");
 
-        Set<String> s1 = new HashSet<>();
-        s1.add("test1");
-        s1.add("test2");
-        Set<String> s2 = new HashSet<>();
-        s2.add("test1");
+        Set<String> s1 = Set.of("test1","test2");
+        Set<String> s2 = Set.of("test1");
         System.out.println("numElementsInCommon result : " + numElementsInCommon(s1, s2));
         System.out.println("getElementsInCommon result :" + getElementsInCommon(s1, s2).toString());
-
-
     }
 
     public static <T> List<T> generateList(T arg){
