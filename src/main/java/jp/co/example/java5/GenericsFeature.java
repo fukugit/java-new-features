@@ -1,9 +1,6 @@
 package jp.co.example.java5;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GenericsFeature {
     public static void main(String[] args) {
@@ -18,6 +15,10 @@ public class GenericsFeature {
         Set<String> s2 = Set.of("test1");
         System.out.println("numElementsInCommon result : " + numElementsInCommon(s1, s2));
         System.out.println("getElementsInCommon result :" + getElementsInCommon(s1, s2).toString());
+
+        List<Number> list2 = new ArrayList<>();
+        list2.add(1L);
+        System.out.println("OK : "+ getNum(list2).getClass());
     }
 
     public static <T> List<T> generateList(T arg){
@@ -55,5 +56,12 @@ public class GenericsFeature {
             }
         }
         return result;
+    }
+
+    private static <E> E getNum(Iterable<? extends E> src) {
+        for (E e : src) {
+            return e;
+        }
+        return null;
     }
 }

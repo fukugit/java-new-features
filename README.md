@@ -1,14 +1,32 @@
 # java-new-features
 ![](https://img.shields.io/badge/Initial%20creation-Jan%202019-brightgreen.svg)  
 
-This project is the cheat sheet of Java feature per version.  
+This project is the cheat sheet of Java for each version, which is from java 5 to 11.    
 <br/>
 
 ## Description
-The following explain Java feature in each classes.  
+The following sections explain the new feature of java per each java version.  
 
 ### Java5
-1. [Generics for method](src/main/java/jp/co/example/java5/GenericsOfMethod.java)  
+1. Generics for Method.  
+    The below Java codes are defined in [here](src/main/java/jp/co/example/java5/GenericsOfMethod.java).  
+
+    1-1. The following method is standard one for Generics.  
+    ```
+     private static <T> T get(T name) {
+       return name;
+     }
+    ```
+
+    1-2. The following method is for List.  
+    ```
+      private static <T> List<T> getList(T name) {
+        List<T> list = new ArrayList<>();
+        list.add(name);
+        return list;
+      }
+    ```
+
 
 ### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
