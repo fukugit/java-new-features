@@ -105,7 +105,7 @@ The following sections explain the new feature of java per each java version.
         }
       }
     ```
-    Way to call the above class.  
+    The way to call the above class.  
     ```
       Book<Integer> book = new Book<>();
       book.set(Integer.valueOf(1));
@@ -113,6 +113,41 @@ The following sections explain the new feature of java per each java version.
     ```
 
 ### Java8
+1. Lambda  
+    The below Java codes are defined in [here](src/main/java/jp/co/example/java8/LambdaFeature.java).  
+
+    1-1. The below code is not Lambda. That is just Anonymous class(無名クラス). It is possible to replace to lambda class from now like 1-2. That means it is just example.  
+    ```
+      Runnable run = new Runnable() {
+        @Override
+        public void run() {
+          System.out.println("test");
+        }
+      };
+      run.run();
+    ```
+    The way to call the above class.  
+    ```
+      run.run();
+    ```
+    
+    1-2. The below Lambda is standard way.
+    ```
+      Runnable run1 = () -> {System.out.println("test 1");};
+      run1.run();
+    ```
+    
+    1-3. The below Lambda is using method. The method follow 'type inference'(型推論) implicitly.   
+    ```
+      public static void runRunnable(Runnable r) {
+        r.run();
+      }
+    ```
+    The way to call the above method. The Runnable class should be pass to the method at timing of calling.  
+    ```
+      runRunnable(()->{System.out.println("test 2");});
+    ```
+    
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
 2. [Function method](src/main/java/jp/co/example/java8/FunctionFeature.java)  
 3. [Stream](src/main/java/jp/co/example/java8/StreamFeature.java)  
