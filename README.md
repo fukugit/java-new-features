@@ -86,7 +86,32 @@ The following sections explain the new feature of java per each java version.
         return null;
       }
     ```
-    
+
+2. Generics for Class.  
+    The below Java codes are defined in [here](src/main/java/jp/co/example/java5/GenericsOfClass.java).  
+    ```
+      public static class Book<T> {
+        private T t;
+        private List<T> list = new ArrayList<T>();
+        
+        public String set(T arg){
+          this.t = arg;
+          return t.toString();
+        }
+        
+        public List<T> add(T arg){
+          list.add(arg);
+          return list;
+        }
+      }
+    ```
+    Way to call the above class.  
+    ```
+      Book<Integer> book = new Book<>();
+      book.set(Integer.valueOf(1));
+      book.add(Integer.valueOf(1))
+    ```
+
 ### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
 2. [Function method](src/main/java/jp/co/example/java8/FunctionFeature.java)  
