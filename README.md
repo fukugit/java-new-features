@@ -137,7 +137,7 @@ The following sections explain the new feature of java per each java version.
       run1.run();
     ```
     
-    1-3. The below Lambda is using method. The method follow 'type inference'(型推論) implicitly.   
+    1-3. The below Lambda is using method to run Runnable class. The method follow 'type inference'(型推論) implicitly.   
     ```
       public static void runRunnable(Runnable r) {
         r.run();
