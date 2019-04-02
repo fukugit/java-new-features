@@ -28,7 +28,14 @@ public class LambdaFeature {
     
     // 4th way
     Run3 run3 = (String name) -> {return name + "!";};
+    Run3 run4 = (name) -> {return name + "!";};
+    Run3 run5 = name -> {return name + "!";};
     System.out.println(run3.show("test 3"));
+    System.out.println(run4.show("test 4"));
+    System.out.println(run5.show("test 5"));
+
+    Run3 run6 = (String::toUpperCase);
+    System.out.println(run6.show("test 6"));
   }
 
   public static void runRunnable(Runnable r) {

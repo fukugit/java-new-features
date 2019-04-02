@@ -146,6 +146,29 @@ The following sections explain the new feature of java per each java version.
       // The way to call the above method. The Runnable class should be pass to the method at timing of calling.  
       runRunnable(()->{System.out.println("test 2");});
     ```
+    
+    1-4. Using original @FunctionalInterface.  
+    ```
+      @FunctionalInterface
+      interface Run3{
+          public String show(String name);
+          public default String getName(String name) {return name;};
+      }
+      
+      // The way to call above class. There are 3 type way to call.  
+      Run3 run3 = (String name) -> {return name + "!";};
+      System.out.println(run3.show("test 3"));
+      
+      Run3 run4 = (name) -> {return name + "!";};
+      System.out.println(run4.show("test 4"));
+      
+      Run3 run5 = name -> {return name + "!";};
+      System.out.println(run5.show("test 5"));
+      
+      // The below way is method reference(メソッド参照).  The below section explain the method reference more detail.  
+      Run3 run6 = (String::toUpperCase);
+      System.out.println(run6.show("test 6"));
+    ```
 
     
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
