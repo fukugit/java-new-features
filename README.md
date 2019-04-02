@@ -86,6 +86,7 @@ The following sections explain the new feature of java per each java version.
         return null;
       }
     ```
+<br/>
 
 2. Generics for Class.  
     The below Java codes are defined in [here](src/main/java/jp/co/example/java5/GenericsOfClass.java).  
@@ -104,9 +105,8 @@ The following sections explain the new feature of java per each java version.
           return list;
         }
       }
-    ```
-    The way to call the above class.  
-    ```
+    
+      // The way to call the above class.
       Book<Integer> book = new Book<>();
       book.set(Integer.valueOf(1));
       book.add(Integer.valueOf(1))
@@ -124,16 +124,16 @@ The following sections explain the new feature of java per each java version.
           System.out.println("test");
         }
       };
-      run.run();
-    ```
-    The way to call the above class.  
-    ```
+      
+      // The way to call the above class.  
       run.run();
     ```
     
     1-2. The below Lambda is standard way.
     ```
       Runnable run1 = () -> {System.out.println("test 1");};
+      
+      // The way to call the above class. 
       run1.run();
     ```
     
@@ -142,11 +142,11 @@ The following sections explain the new feature of java per each java version.
       public static void runRunnable(Runnable r) {
         r.run();
       }
-    ```
-    The way to call the above method. The Runnable class should be pass to the method at timing of calling.  
-    ```
+      
+      // The way to call the above method. The Runnable class should be pass to the method at timing of calling.  
       runRunnable(()->{System.out.println("test 2");});
     ```
+
     
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
 2. [Function method](src/main/java/jp/co/example/java8/FunctionFeature.java)  
