@@ -4,17 +4,22 @@ import java.util.Date;
 
 public class FunctionalInterfaceFeature {
 
-    public static void main(String[] args) {
-      Book book1 = (String subject) -> {return "Subject : " + subject;};
-      Book book2 = get();
-      System.out.println(book1.showTitle("AAA"));
-      System.out.println(book2.showTitle("bbb"));
-    }
-    private static Book get() {
+  public static void main(String[] args) {
+    Book book1 = (subject) -> {
+      return "Subject : " + subject;
+    };
+    System.out.println(book1.showTitle("AAA"));
+
+    Book book2 = get();
+    System.out.println(book2.showTitle("bbb"));
+  }
+
+  private static Book get() {
     return s -> s.toUpperCase();
   }
+
   @FunctionalInterface
-  interface Book{
-      public String showTitle(String name);
+  interface Book {
+    public String showTitle(String name);
   }
 }
