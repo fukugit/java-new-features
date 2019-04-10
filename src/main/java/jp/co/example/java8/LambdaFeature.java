@@ -10,40 +10,35 @@ public class LambdaFeature {
     Runnable run = new Runnable() {
       @Override
       public void run() {
-        System.out.println("test");
+        System.out.println("This is not Lambda.");
       }
     };
-    run.run();;
+    run.run();
 
-    // 1st way
-    Runnable run1 = () -> {System.out.println("test 1");};
-    run1.run();
+    // Single line in Lambda.
+    Run run1 = (String name) -> name + "!";
+    System.out.println(run1.show("Single line in Lambda"));
+    
+    // Multiple line in Lambda.
+    Run run2 = (String name) -> {
+      String result = name + "!";
+      return result + "!";
+    };
+    System.out.println(run2.show("Multiple line in Lambda"));
 
-    // 2nd way
-    runRunnable(()->{System.out.println("test 2");});
-    
-    // 3rd way
-    List<String> list = Arrays.asList("AA", "BB", "CC");
-    list.stream().forEach((String s) -> System.out.println(s));
-    
-    // 4th way
-    Run3 run3 = (String name) -> {return name + "!";};
-    Run3 run4 = (name) -> {return name + "!";};
-    Run3 run5 = name -> {return name + "!";};
-    System.out.println(run3.show("test 3"));
+
+    Run run4 = (name) -> {return name + "!";};
+    Run run5 = name -> {return name + "!";};
     System.out.println(run4.show("test 4"));
     System.out.println(run5.show("test 5"));
 
-    Run3 run6 = (String::toUpperCase);
+    Run run6 = (String::toUpperCase);
     System.out.println(run6.show("test 6"));
   }
 
-  public static void runRunnable(Runnable r) {
-    r.run();
-  }
 
   @FunctionalInterface
-  interface Run3{
+  interface Run {
       public String show(String name);
       public default String getName(String name) {return name;};
   }
