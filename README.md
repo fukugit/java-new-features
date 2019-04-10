@@ -8,31 +8,6 @@ This project is the cheat sheet of Java for each version, which is from java 5 t
 See [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-new-feature).  
 That is main contents in this project.  
 
-### Java5
-2. Generics for Class.  
-    The below Java codes are defined in [here](src/main/java/jp/co/example/java5/GenericsOfClass.java).  
-    ```
-      public static class Book<T> {
-        private T t;
-        private List<T> list = new ArrayList<T>();
-        
-        public String set(T arg){
-          this.t = arg;
-          return t.toString();
-        }
-        
-        public List<T> add(T arg){
-          list.add(arg);
-          return list;
-        }
-      }
-    
-      // The way to call the above class.
-      Book<Integer> book = new Book<>();
-      book.set(Integer.valueOf(1));
-      book.add(Integer.valueOf(1))
-    ```
-
 ### Java8
 1. Lambda  
     The below Java codes are defined in [here](src/main/java/jp/co/example/java8/LambdaFeature.java).  
