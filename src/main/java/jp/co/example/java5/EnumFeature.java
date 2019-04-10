@@ -35,5 +35,5 @@ public class EnumFeature {
                             .filter(s -> str.equals(s.toString())).findFirst();
         return result.get();
     }
-}
+  }
 }
