@@ -6,14 +6,14 @@ import java.util.List;
 public class LambdaFeature {
 
   public static void main(String[] args) {
-    // Not Lambda.
-    Runnable run = new Runnable() {
+    // This is not Lambda.
+    Run run = new Run() {
       @Override
-      public void run() {
-        System.out.println("This is not Lambda.");
+      public String show(String name) {
+        return name + "!";
       }
     };
-    run.run();
+    System.out.println(run.show("This is not Lambda"));
 
     // Single line in Lambda.
     Run run1 = (String name) -> name + "!";
