@@ -6,8 +6,8 @@ This project is the cheat sheet of Java for each version, which is from java 5 t
 
 ## Description
 The below are main contents in this project.  
-Java 5 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-5).
-Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-8).
+Java 5 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-5).  
+Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-8).  
 
 #### Java5
 1. [Generics for Method](src/main/java/jp/co/example/java5/GenericsOfMethod.java).  
