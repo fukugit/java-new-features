@@ -22,7 +22,7 @@ That is main contents in this project.
 6. [Optional](src/main/java/jp/co/example/java8/OptionalFeature.java)  
 7. [Sort in Collection](src/main/java/jp/co/example/java8/CollectionsSortFeature.java)  
 8. [Collector](src/main/java/jp/co/example/java8/CollectorFeature.java)  
-
+9. [LocalDate](src/main/java/jp/co/example/java8/LocalDateFeature.java)  
 
 ## Demo
 None.  
