@@ -12,9 +12,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <javs.version>1.9</javs.version>
-    <maven.compiler.target>1.9</maven.compiler.target>
-    <maven.compiler.source>1.9</maven.compiler.source>
+    <javs.version>11</javs.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
   </properties>
 
   <dependencies>
