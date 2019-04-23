@@ -1,12 +1,19 @@
 package jp.co.example.java8;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class CollectionsSortFeature {
   public static void main(String[] args) {
+
+    List<String> list0 = Arrays.asList("AAA", "B", "CC");
+    Collections.sort(list0, new Comparator<String>() {
+      @Override
+      public int compare(String o1, String o2) {
+        return Integer.compare(o1.length(), o2.length());
+      }
+    });
+    list0.stream().forEach(System.out::println);
+
     List<String> list1 = Arrays.asList("AAA", "B", "CC");
     list1.sort((s1, s2) -> s1.length() - s2.length());
     list1.stream().forEach(System.out::println);
@@ -18,6 +25,10 @@ public class CollectionsSortFeature {
     List<String> list3 = Arrays.asList("AAA", "B", "CC");
     list3.sort(Comparator.comparing(String::length));
     list3.stream().forEach(System.out::println);
+
+    List<String> list4 = Arrays.asList("AAA", "B", "CC");
+    list4.sort(Comparator.comparingInt(String::length));
+    list4.stream().forEach(System.out::println);
 
     List<Book> books = new ArrayList<>();
     books.add(new Book("AAA", 3000L));
