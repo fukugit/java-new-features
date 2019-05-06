@@ -5,10 +5,26 @@ import java.util.List;
 
 public class StreamFeature {
   public static void main(String[] args) {
-    List<String> list = Arrays.asList("Tokyo", "Osaka", "Okinawa", "Kanagawa", "Ooita");
-    long count = list.stream().filter(city -> city.length() < 7).count();
-    list.stream().limit(count - 1).forEach(System.out::println);
-    // takeWhile
-    list.stream().takeWhile(city -> city.length() < 7).forEach(System.out::println);
+    // takeWhile (条件に一致している間のみ処理を実施)
+    List<String> list1 = Arrays.asList("Tokyo", "Osaka", "Okinawa", "Kanagawa", "Ooita");
+    long count = list1.stream().filter(city -> city.length() < 7).count();
+    list1.stream().limit(count - 1).forEach(s -> System.out.println("Like takeWhile at Java8: " + s));
+    // Java9
+    list1.stream().takeWhile(city -> city.length() < 7)
+      .forEach(s -> System.out.println("takeWhile at Java9: " + s));
+
+    // dropWhile (条件に一致しないデータが現れて以降、処理をする)
+    List<String> list2 = Arrays.asList("Tokyo", "Osaka", "Okinawa", "Kanagawa", "Ooita");
+    boolean isDirty = false;
+    for (String city : list2) {
+      if (!isDirty && !(city.length() < 7)) isDirty = true;
+      if (isDirty) System.out.println("Like dropWhile at Java8: " + city);
+    }
+    // Java9
+    list1.stream().dropWhile(city -> city.length() < 7)
+      .forEach(s -> System.out.println("dropWhile at Java9: " + s));
+
+    // ofNullable (Nullをスキップする。)
+    // https://codezine.jp/article/detail/10726
   }
 }
