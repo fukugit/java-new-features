@@ -2,6 +2,7 @@ package jp.co.example.java9;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class StreamFeature {
   public static void main(String[] args) {
@@ -25,6 +26,16 @@ public class StreamFeature {
       .forEach(s -> System.out.println("dropWhile at Java9: " + s));
 
     // ofNullable (Nullをスキップする。)
+    Stream.of(null,7,2,4,3,5,null,6).flatMap(i -> {
+      if(i == null){
+        return Stream.empty();
+      }
+      else{
+        return Stream.of(i);
+      }
+    }).forEach(System.out::println);
+    // Java 9
     // https://codezine.jp/article/detail/10726
+    Stream.of(null,7,2,4,3,5,null,6).flatMap(i -> Stream.ofNullable(i)).forEach(System.out::println);
   }
 }
