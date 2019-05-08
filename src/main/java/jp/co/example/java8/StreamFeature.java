@@ -3,6 +3,7 @@ package jp.co.example.java8;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 import jp.co.example.java5.EnumFeature.Result;
 
@@ -31,8 +32,12 @@ public class StreamFeature {
     List<String> list3 = Arrays.asList("Test4", "Test4");
     List<TestMap> map3result = list3.stream().map(TestMap::new).collect(Collectors.toList());
     map3result.stream().map(s -> s.getName()).forEach(System.out::println);
-    
-    
+
+    // flatMap
+    List<String> list4 = Arrays.asList("Test4", "Test4");
+    List<Object> result4 = list4.stream().flatMap(x -> Stream.of(x, x.length())).collect(Collectors.toList());
+    result4.stream().forEach(System.out::println);
+
     // filter
     // The feature can judge the behavior based on condition, such as "if" statement.
     List<String> stream5 = Arrays.asList("Test5", "Test5");
