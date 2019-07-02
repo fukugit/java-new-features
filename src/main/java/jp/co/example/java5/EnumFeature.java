@@ -6,14 +6,18 @@ import java.util.Optional;
 public class EnumFeature {
 
   public static void main(String[] args) {
-    System.out.println("toString:" + Result.SUCCESS.toString());
-    System.out.println("getName:" + Result.SUCCESS.getName());
-    System.out.println("getReturnValue:" + Result.SUCCESS.getReturnValue());
+    System.out.println("The below code is for Result class. --------");
+    System.out.println("Result.SUCCESS.toString():" + Result.SUCCESS.toString());
+    System.out.println("Result.SUCCESS.getName():" + Result.SUCCESS.getName());
+    System.out.println("Result.SUCCESS.getReturnValue():" + Result.SUCCESS.getReturnValue());
 
     Result result = Result.fromString("Success");
-    System.out.println("toString:" + result.toString());
-    System.out.println("getName:" + result.getName());
-    System.out.println("getReturnValue:" + result.getReturnValue());
+    System.out.println("result.toString:" + result.toString());
+    System.out.println("result.getName:" + result.getName());
+    System.out.println("result.getReturnValue:" + result.getReturnValue());
+
+    System.out.println("The below code is for Operation class. --------");
+    // TODO add for Operation class logic.
   }
 
   public enum Result {
@@ -46,5 +50,45 @@ public class EnumFeature {
                             .filter(s -> str.equals(s.toString())).findFirst();
         return result.get();
     }
+  }
+
+  public enum Operation {
+    PLUS("+") {
+      @Override
+      public double apply(double x, double y) {
+        return x + y;
+      }
+    },
+    MINUS("-") {
+      @Override
+      public double apply(double x, double y) {
+        return x - y;
+      }
+    },
+    TIMES("*") {
+      @Override
+      public double apply(double x, double y) {
+        return x * y;
+      }
+    },
+    DIVIDE("/") {
+      @Override
+      public double apply(double x, double y) {
+        return x / y;
+      }
+    };
+
+    private final String symbol;
+
+    Operation(String symbol) {
+      this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+      return this.symbol;
+    }
+
+    public abstract double apply(double x, double y);
   }
 }
