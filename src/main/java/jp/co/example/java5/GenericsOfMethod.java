@@ -26,6 +26,9 @@ public class GenericsOfMethod {
     map2.put("key", "val");
     map2.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).forEach(System.out::println);
 
+    Map<String, Integer> map3 = getHashMap("key", 1000);
+    map3.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).forEach(System.out::println);
+
     ////// Using single 'extends' for generics class.
     List<Integer> test3 = getList(Integer.valueOf(1));
     test3.stream().forEach(System.out::println);
@@ -53,8 +56,14 @@ public class GenericsOfMethod {
     return list;
   }
 
-  public static <K, V> HashMap<K, V> getHashMap() {
+  public static <K, V> Map<K, V> getHashMap() {
     return new HashMap<K, V>();
+  }
+
+  public static <K, V> Map<K, V> getHashMap(K k, V v) {
+    Map map = new HashMap<K, V>();
+    map.put(k, v);
+    return map;
   }
 
   private static <T extends Number> List<T> getList(T id) {
