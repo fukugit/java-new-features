@@ -6,6 +6,10 @@ import java.util.Optional;
 public class EnumFeature {
 
   public static void main(String[] args) {
+    System.out.println("The below code is for Status class. --------");
+    System.out.println("Status.SUCCESS:" + Status.SUCCESS);
+    System.out.println("Status.SUCCESS.toString():" + Status.SUCCESS.toString());
+
     System.out.println("The below code is for Result class. --------");
     System.out.println("Result.SUCCESS.toString():" + Result.SUCCESS.toString());
     System.out.println("Result.SUCCESS.getName():" + Result.SUCCESS.getName());
@@ -18,6 +22,10 @@ public class EnumFeature {
 
     System.out.println("The below code is for Operation class. --------");
     // TODO add for Operation class logic.
+  }
+
+  public enum Status {
+    SUCCESS, FAIL;
   }
 
   public enum Result {
