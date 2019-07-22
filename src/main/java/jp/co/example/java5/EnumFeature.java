@@ -9,11 +9,13 @@ public class EnumFeature {
     System.out.println("The below code is for Status class. --------");
     System.out.println("Status.SUCCESS:" + Status.SUCCESS);
     System.out.println("Status.SUCCESS.toString():" + Status.SUCCESS.toString());
+    Arrays.stream(Status.values()).forEach(System.out::println);
 
     System.out.println("The below code is for Result class. --------");
     System.out.println("Result.SUCCESS.toString():" + Result.SUCCESS.toString());
     System.out.println("Result.SUCCESS.getName():" + Result.SUCCESS.getName());
     System.out.println("Result.SUCCESS.getReturnValue():" + Result.SUCCESS.getReturnValue());
+    System.out.println("Result.fromString(\"Success\").toString():" + Result.fromString("Success").toString());
 
     Result result = Result.fromString("Success");
     System.out.println("result.toString:" + result.toString());
