@@ -6,12 +6,12 @@ import java.util.Optional;
 public class EnumFeature {
 
   public static void main(String[] args) {
-    System.out.println("The below code is for Status class. --------");
+    System.out.println("------- The below code is for Status class. --------");
     System.out.println("Status.SUCCESS:" + Status.SUCCESS);
     System.out.println("Status.SUCCESS.toString():" + Status.SUCCESS.toString());
     Arrays.stream(Status.values()).forEach(System.out::println);
 
-    System.out.println("The below code is for Result class. --------");
+    System.out.println("------- The below code is for Result class. --------");
     System.out.println("Result.SUCCESS.toString():" + Result.SUCCESS.toString());
     System.out.println("Result.SUCCESS.getName():" + Result.SUCCESS.getName());
     System.out.println("Result.SUCCESS.getReturnValue():" + Result.SUCCESS.getReturnValue());
@@ -22,8 +22,11 @@ public class EnumFeature {
     System.out.println("result.getName:" + result.getName());
     System.out.println("result.getReturnValue:" + result.getReturnValue());
 
-    System.out.println("The below code is for Operation class. --------");
-    // TODO add for Operation class logic.
+    System.out.println("------- The below code is for Operation class. --------");
+    System.out.println("Operation.PLUS.apply:" + Operation.PLUS.apply(10, 20));
+    System.out.println("Operation.MINUS.apply:" + Operation.MINUS.apply(10, 20));
+    System.out.println("Operation.TIMES.apply:" + Operation.TIMES.apply(10, 20));
+    System.out.println("Operation.DIVIDE.apply:" + Operation.DIVIDE.apply(10, 20));
   }
 
   public enum Status {
