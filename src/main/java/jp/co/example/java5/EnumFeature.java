@@ -27,6 +27,12 @@ public class EnumFeature {
     System.out.println("Operation.MINUS.apply:" + Operation.MINUS.apply(10, 20));
     System.out.println("Operation.TIMES.apply:" + Operation.TIMES.apply(10, 20));
     System.out.println("Operation.DIVIDE.apply:" + Operation.DIVIDE.apply(10, 20));
+
+    System.out.println("------- The below code is for PayrollDay class. --------");
+    System.out.println("PayrollDay.MONDAY.pay:" + PayrollDay.MONDAY.pay(720, 80));
+    System.out.println("PayrollDay.SUNDAY.pay:" + PayrollDay.SUNDAY.pay(720, 80));
+    System.out.println("PayrollDay.MONDAY.payType.overtimePay:" + PayrollDay.MONDAY.payType.overtimePay(720, 80));
+    System.out.println("PayrollDay.SUNDAY.payType.overtimePay:" + PayrollDay.SUNDAY.payType.overtimePay(720, 80));
   }
 
   public enum Status {
@@ -103,5 +109,44 @@ public class EnumFeature {
     }
 
     public abstract double apply(double x, double y);
+  }
+
+  enum PayrollDay {
+    MONDAY(PayType.WEEKDAY),
+    SUNDAY(PayType.WEEKEND);
+
+    private final PayType payType;
+
+    PayrollDay(PayType payType) {
+      this.payType = payType;
+    }
+
+    int pay(int minutesWorked, int payRate) {
+      return payType.pay(minutesWorked, payRate);
+    }
+
+    private enum PayType {
+      WEEKDAY {
+        @Override
+        int overtimePay(int mins, int payRate) {
+          return mins <= MINS_PER_SHIFT ? 0 : (mins - MINS_PER_SHIFT) * payRate / 2;
+        }
+      },
+      WEEKEND {
+        @Override
+        int overtimePay(int mins, int payRate) {
+          return mins * payRate / 2;
+        }
+      };
+
+      abstract int overtimePay(int mins, int payRate);
+
+      private static final int MINS_PER_SHIFT = 8 * 60;
+
+      int pay(int minsWorked, int payRate) {
+        int basePay = minsWorked * payRate;
+        return basePay + overtimePay(minsWorked, payRate);
+      }
+    }
   }
 }
