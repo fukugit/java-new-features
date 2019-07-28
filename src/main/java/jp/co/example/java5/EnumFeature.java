@@ -33,6 +33,9 @@ public class EnumFeature {
     System.out.println("PayrollDay.SUNDAY.pay:" + PayrollDay.SUNDAY.pay(720, 80));
     System.out.println("PayrollDay.MONDAY.payType.overtimePay:" + PayrollDay.MONDAY.payType.overtimePay(720, 80));
     System.out.println("PayrollDay.SUNDAY.payType.overtimePay:" + PayrollDay.SUNDAY.payType.overtimePay(720, 80));
+
+    System.out.println("------- The below code is for BasicOperation class. --------");
+    System.out.println("BasicOperation.PLUS.apply:" + BasicOperation.PLUS.apply(10, 20));
   }
 
   public enum Status {
@@ -147,6 +150,47 @@ public class EnumFeature {
         int basePay = minsWorked * payRate;
         return basePay + overtimePay(minsWorked, payRate);
       }
+    }
+  }
+
+  public interface OperationIF {
+    double apply(double x, double y);
+  }
+  public enum BasicOperation implements OperationIF {
+    PLUS("+") {
+      @Override
+      public double apply(double x, double y) {
+        return x + y;
+      }
+    },
+    MINUS("-") {
+      @Override
+      public double apply(double x, double y) {
+        return x - y;
+      }
+    },
+    TIMES("*") {
+      @Override
+      public double apply(double x, double y) {
+        return x * y;
+      }
+    },
+    DIVIDE("/") {
+      @Override
+      public double apply(double x, double y) {
+        return x / y;
+      }
+    };
+
+    private  final String symbol;
+
+    BasicOperation(String symbol) {
+      this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+      return this.symbol;
     }
   }
 }
