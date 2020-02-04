@@ -22,7 +22,9 @@ public class LocalDateFeature {
 
     // String -> LocalDate
     LocalDate localdate3 = LocalDate.parse("2017-1-1", DateTimeFormatter.ofPattern("[yyyy/M/d]" + "[yyyy-M-d]"));
+    LocalDate localdate6 = LocalDate.parse("2017/1/1", DateTimeFormatter.ofPattern("[yyyy/M/d]" + "[yyyy-M-d]"));
     System.out.println("String -> LocalDate : " + localdate3);
+    System.out.println("String -> LocalDate : " + localdate6);
 
     // java.util.Date -> LocalDate
     Date date = new Date();
