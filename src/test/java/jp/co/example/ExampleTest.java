@@ -1,10 +1,13 @@
 package jp.co.example;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
 
 public class ExampleTest {
   @Test
-  public void test() {
-    System.out.println("ok");
+  void addition() {
+    assertEquals(2, 2);
   }
 }
