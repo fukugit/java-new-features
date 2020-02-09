@@ -13,23 +13,70 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GenericsForClass {
 
   @Nested
-  public class GenericsBase {
+  @DisplayName("BookShelfにNovelを指定します。")
+  public class NovelToGenerics {
     @Test
-    @DisplayName("BookShelfのジェネリクスにNovelを指定します。")
+    @DisplayName("bestに値をセット/取得します。")
     void test1() {
-      Novel novel = new Novel();
-      novel.title = "いとしのヒナゴン";
+      Novel novel = new Novel("いとしのヒナゴン");
       BookShelf<Novel> bookShelf = new BookShelf<>();
       bookShelf.setBest(novel);
       assertEquals("いとしのヒナゴン", bookShelf.getBest().title);
     }
+    @Test
+    @DisplayName("リストに値をセット/取得します。")
+    void test2() {
+      Novel novel1 = new Novel("いとしのヒナゴン 上");
+      Novel novel2 = new Novel("いとしのヒナゴン 下");
+      BookShelf<Novel> bookShelf = new BookShelf<>();
+      bookShelf.push(novel1);
+      bookShelf.push(novel2);
+      assertEquals("いとしのヒナゴン 上", bookShelf.popAll().get(0).title);
+      assertEquals("いとしのヒナゴン 下", bookShelf.popAll().get(1).title);
+    }
   }
 
+  @Nested
+  @DisplayName("BookShelfにMagazineを指定します。")
+  public class MagazineToGenerics {
+    @Test
+    @DisplayName("bestに値をセット/取得します。")
+    void test1() {
+      Magazine magazine = new Magazine("少年ジャンプ");
+      BookShelf<Magazine> bookShelf = new BookShelf<>();
+      bookShelf.setBest(magazine);
+      assertEquals("少年ジャンプ", bookShelf.getBest().title);
+    }
+  }
+
+  @Nested
+  @DisplayName("BookShelfにStringを指定します。")
+  public class StringToGenerics {
+    @Test
+    @DisplayName("bestに値をセット/取得します。")
+    void test1() {
+      String subject = "青空文庫";
+      BookShelf<String> bookShelf = new BookShelf<>();
+      bookShelf.setBest(subject);
+      assertEquals("青空文庫", bookShelf.getBest());
+    }
+  }
+
+  /**
+   * 本棚<br>
+   * 本のListとベストブックを持つクラスです。<br>
+   * 本の型はジェネリクス指定しているので、どのような型でもOKです。<br>
+   * <br>
+   * 本クラス内のT(ジェネリクス)は全てObjectとして扱われます。
+   * @param <T> 本クラスを指定して下さい。
+   */
   public class BookShelf<T> {
     List<T> bookList = new ArrayList<>();
     T best;
-    public List<T> add(T t) {
+    public void push(T t) {
       bookList.add(t);
+    }
+    public List<T> popAll() {
       return bookList;
     }
     public void setBest(T t) {
@@ -40,7 +87,33 @@ public class GenericsForClass {
     }
   }
 
-  public class Novel {
+  /**
+   * 小説<br>
+   * Bookを継承したクラスです。
+   */
+  public class Novel extends Book {
+    public Novel(String title) {
+      super(title);
+    }
+  }
+
+  /**
+   * 雑誌<br>
+   * Bookを継承したクラスです。
+   */
+  public class Magazine extends Book {
+    public Magazine(String title) {
+      super(title);
+    }
+  }
+
+  /**
+   * 本関連クラスのベースクラスです。
+   */
+  public abstract class Book {
+    public Book(String title) {
+      this.title = title;
+    }
     String title;
   }
 }

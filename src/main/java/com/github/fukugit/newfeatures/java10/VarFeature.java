@@ -14,9 +14,9 @@ public class VarFeature {
 
     // The following syntax can be used from Java 11.
     // It allow you to use "var" in "stream".
-    List.of("test1", "test2").stream()
-      .forEach((var s) -> {
-        System.out.println(s);
-      });
+//    List.of("test1", "test2").stream()
+//      .forEach((var s) -> {
+//        System.out.println(s);
+//      });
   }
 }
