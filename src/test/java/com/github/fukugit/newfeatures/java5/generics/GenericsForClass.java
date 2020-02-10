@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("ジェネリクスを使ったクラスの動作確認です。")
+@DisplayName("ジェネリクス指定されたクラスです。")
 public class GenericsForClass {
 
   @Nested
