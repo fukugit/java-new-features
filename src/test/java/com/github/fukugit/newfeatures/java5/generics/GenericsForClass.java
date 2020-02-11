@@ -1,5 +1,6 @@
 package com.github.fukugit.newfeatures.java5.generics;
 
+import com.github.fukugit.newfeatures.keymap.Magazin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -9,75 +10,31 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("ジェネリクス指定されたクラスです。")
+@DisplayName("クラスにジェネリクス指定した場合の動作確認です。")
 public class GenericsForClass {
 
-  @Nested
-  @DisplayName("BookShelfにNovelを指定します。")
-  public class NovelToGenerics {
-    @Test
-    @DisplayName("bestに値をセット/取得します。")
-    void test1() {
-      Novel novel = new Novel("いとしのヒナゴン");
-      BookShelf<Novel> bookShelf = new BookShelf<>();
-      bookShelf.setBest(novel);
-      assertEquals("いとしのヒナゴン", bookShelf.getBest().title);
-    }
-    @Test
-    @DisplayName("リストに値をセット/取得します。")
-    void test2() {
-      Novel novel1 = new Novel("いとしのヒナゴン 上");
-      Novel novel2 = new Novel("いとしのヒナゴン 下");
-      BookShelf<Novel> bookShelf = new BookShelf<>();
-      bookShelf.push(novel1);
-      bookShelf.push(novel2);
-      assertEquals("いとしのヒナゴン 上", bookShelf.popAll().get(0).title);
-      assertEquals("いとしのヒナゴン 下", bookShelf.popAll().get(1).title);
-    }
-  }
-
-  @Nested
-  @DisplayName("BookShelfにMagazineを指定します。")
-  public class MagazineToGenerics {
-    @Test
-    @DisplayName("bestに値をセット/取得します。")
-    void test1() {
-      Magazine magazine = new Magazine("少年ジャンプ");
-      BookShelf<Magazine> bookShelf = new BookShelf<>();
-      bookShelf.setBest(magazine);
-      assertEquals("少年ジャンプ", bookShelf.getBest().title);
-    }
-  }
-
-  @Nested
-  @DisplayName("BookShelfにStringを指定します。")
-  public class StringToGenerics {
-    @Test
-    @DisplayName("bestに値をセット/取得します。")
-    void test1() {
-      String subject = "青空文庫";
-      BookShelf<String> bookShelf = new BookShelf<>();
-      bookShelf.setBest(subject);
-      assertEquals("青空文庫", bookShelf.getBest());
-    }
-  }
-
   /**
-   * 本棚<br>
+   * 本棚クラス<br>
    * 本のListとベストブックを持つクラスです。<br>
-   * 本の型はジェネリクス指定しているので、どのような型でもOKです。<br>
+   * 本の型はジェネリクス指定しているので、Stringでも独自クラスでもどのような型でもOKです。<br>
    * <br>
-   * 本クラス内のT(ジェネリクス)は全てObjectとして扱われます。
-   * @param <T> 本クラスを指定して下さい。
+   * 注意：このクラス内のT(ジェネリクス)は全てObjectとして扱われます。
+   * @param <T> 本を表現するクラスを指定して下さい。
    */
   public class BookShelf<T> {
-    List<T> bookList = new ArrayList<>();
+    List<T> bookList;
     T best;
-    public void push(T t) {
-      bookList.add(t);
+
+    public BookShelf(List<T> bookList, T best) {
+      this.bookList = new ArrayList<>(bookList);
+      this.best = best;
     }
-    public List<T> popAll() {
-      return bookList;
+
+    public void pushAll(List<T> t) {
+      bookList.addAll(t);
+    }
+    public void popAll(List<T> t) {
+      t.addAll(bookList);
     }
     public void setBest(T t) {
       best = t;
@@ -87,20 +44,14 @@ public class GenericsForClass {
     }
   }
 
-  /**
-   * 小説<br>
-   * Bookを継承したクラスです。
-   */
+  /** 小説クラス */
   public class Novel extends Book {
     public Novel(String title) {
       super(title);
     }
   }
 
-  /**
-   * 雑誌<br>
-   * Bookを継承したクラスです。
-   */
+  /** 雑誌クラス */
   public class Magazine extends Book {
     public Magazine(String title) {
       super(title);
@@ -116,4 +67,72 @@ public class GenericsForClass {
     }
     String title;
   }
+
+  @Nested
+  @DisplayName("BookShelfにNovelを指定します。")
+  public class NovelToGenerics {
+    @Test
+    @DisplayName("bestとbookListの値をセット/取得します。")
+    void test1() {
+      // Given
+      Novel novel1 = new Novel("いとしのヒナゴン");
+      Novel novel2 = new Novel("流星ワゴン");
+      List<Novel> results = new ArrayList<>();
+      // When
+      BookShelf<Novel> bookShelf = new BookShelf(List.of(novel1), "うーん、思いつかない");
+      bookShelf.pushAll(List.of(novel2));
+      bookShelf.setBest(novel1);
+      bookShelf.popAll(results);
+      // Then
+      assertEquals("いとしのヒナゴン", bookShelf.getBest().title);
+      assertEquals("いとしのヒナゴン", results.get(0).title);
+      assertEquals("流星ワゴン", results.get(1).title);
+    }
+  }
+
+  @Nested
+  @DisplayName("BookShelfにMagazineを指定します。")
+  public class MagazineToGenerics {
+    @Test
+    @DisplayName("bestとbookListの値をセット/取得します。")
+    void test1() {
+      // Given
+      Magazine magazine1 = new Magazine("ポパイ");
+      Magazine magazine2 = new Magazine("東京カレンダー");
+      List<Magazine> results = new ArrayList<>();
+      // When
+      BookShelf<Magazine> bookShelf = new BookShelf(List.of(magazine1), "うーん、思いつかない");
+      bookShelf.pushAll(List.of(magazine2));
+      bookShelf.setBest(magazine1);
+      bookShelf.popAll(results);
+      // Then
+      assertEquals("ポパイ", bookShelf.getBest().title);
+      assertEquals("ポパイ", results.get(0).title);
+      assertEquals("東京カレンダー", results.get(1).title);
+    }
+  }
+
+  @Nested
+  @DisplayName("BookShelfにStringを指定します。")
+  public class StringToGenerics {
+    @Test
+    @DisplayName("bestとbookListの値をセット/取得します。")
+    void test1() {
+      // Given
+      String magazine1 = "ドラえもん";
+      String magazine2 = "キテレツ";
+      List<String> results = new ArrayList<>();
+      // When
+      BookShelf<String> bookShelf = new BookShelf(List.of(magazine1), "うーん、思いつかない");
+      bookShelf.pushAll(List.of(magazine2));
+      bookShelf.setBest(magazine1);
+      bookShelf.popAll(results);
+      // Then
+      assertEquals("ドラえもん", bookShelf.getBest());
+      assertEquals("ドラえもん", results.get(0));
+      assertEquals("キテレツ", results.get(1));
+    }
+  }
+
+
 }
