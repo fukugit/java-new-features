@@ -1,6 +1,5 @@
 package com.github.fukugit.newfeatures.java5.generics;
 
-import com.github.fukugit.newfeatures.keymap.Magazin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -10,26 +9,46 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Interfaceにジェネリクス指定した場合の、実クラスの方でどのようにジェネリクスを指定するかを確認するためのクラスです。
+ */
 @DisplayName("Interfaceにジェネリクス指定した場合の動作確認です。")
-public class GenericsForInterface {
+class GenericsForInterface {
 
-  public interface BookShelf<BOOK> {
-    void pushAll(List<BOOK> t);
-    void popAll(List<BOOK> t);
-    void setBest(BOOK t);
-    BOOK getBest();
+  /**
+   * インターフェースのジェネリクスなので、実クラスでTの型を決定します。
+   * このテストクラスでは、Tに{@link Novel}、{@link Magazine}、{@link Book}が指定される想定です。
+   * もちろんString, IntegerでもOKです。
+   * @param <T> 本の型です。
+   */
+  private interface BookShelf<T> {
+    void pushAll(List<T> t);
+    void popAll(List<T> t);
+    void setBest(T t);
+    T getBest();
   }
 
-  public interface BookRepository<INSERT, UPDATE> {
+  /**
+   * これはジェネリクスを複数指定したケースです。
+   * リポジトリ層のジェネリクスであれば、TとかEと命名せずにINSERTのような感じで何をするのかを明確にするのもよいと思います。
+   * @param <INSERT> insertメソッドの引数及び返却値
+   * @param <UPDATE> updateメソッドの引数及び返却値
+   */
+  private interface BookRepository<INSERT, UPDATE> {
     INSERT insert(INSERT entity);
     UPDATE update(UPDATE entity);
   }
 
-  public class BookShelfImpl implements BookShelf<Book> {
+  /**
+   * {@link BookShelf}の実クラスです。
+   * ジェネリクスには{@link Book}を指定します。
+   * 全てのメソッドで、{@link Novel}、{@link Magazine}、{@link Book}が指定できます。
+   */
+  private class BookShelfImpl implements BookShelf<Book> {
     List<Book> bookList;
     Book best;
 
-    public BookShelfImpl(List<Book> bookList, Book best) {
+    BookShelfImpl(List<Book> bookList, Book best) {
       this.bookList = new ArrayList<>(bookList);
       this.best = best;
     }
@@ -52,13 +71,15 @@ public class GenericsForInterface {
     }
   }
 
-  public class BookRepositoryImpl implements BookRepository<Novel, Magazine> {
-
+  /**
+   * {@link BookRepository}の実クラスです。
+   * INSERTには{@link Novel}、UPDATEには{@link Magazine}を指定します。
+   */
+  private class BookRepositoryImpl implements BookRepository<Novel, Magazine> {
     @Override
     public Novel insert(Novel entity) {
       return entity;
     }
-
     @Override
     public Magazine update(Magazine entity) {
       return entity;
@@ -66,15 +87,15 @@ public class GenericsForInterface {
   }
 
   /** 小説クラス */
-  public class Novel extends Book {
-    public Novel(String title) {
+  private class Novel extends Book {
+    Novel(String title) {
       super(title);
     }
   }
 
   /** 雑誌クラス */
-  public class Magazine extends Book {
-    public Magazine(String title) {
+  private class Magazine extends Book {
+    Magazine(String title) {
       super(title);
     }
   }
@@ -82,16 +103,16 @@ public class GenericsForInterface {
   /**
    * 本関連クラスのベースクラスです。
    */
-  public abstract class Book {
-    public Book(String title) {
+  private abstract class Book {
+    Book(String title) {
       this.title = title;
     }
     String title;
   }
 
   @Nested
-  @DisplayName("BookShelfにBookを指定します。")
-  public class NovelToGenerics {
+  @DisplayName("BookShelfを実行します。")
+  class BookShelfTest {
     /**
      * BookShelfにNovelとMagazineをセットします。
      * 取り出し(pop)時はベースクラスのBookとして扱います。
@@ -121,6 +142,30 @@ public class GenericsForInterface {
       assertEquals("ポパイ", results.get(1).title);
       assertEquals("流星ワゴン", results.get(2).title);
       assertEquals("東京カレンダー", results.get(3).title);
+    }
+  }
+
+  @Nested
+  @DisplayName("BookRepositoryを実行します。")
+  class BookRepositoryTest {
+    /**
+     * BookRepositoryにNovelとMagazineをセットします。
+     */
+    @Test
+    @DisplayName("insert・updateメソッドを実行します。")
+    void test1() {
+      // Given
+      Novel novel1 = new Novel("いとしのヒナゴン");
+      Magazine magazine1 = new Magazine("ポパイ");
+
+      // When
+      BookRepository<Novel, Magazine> bookShelf = new BookRepositoryImpl();
+      Novel result1 = bookShelf.insert(novel1);
+      Magazine result2 = bookShelf.update(magazine1);
+
+      // Then
+      assertEquals("いとしのヒナゴン", result1.title);
+      assertEquals("ポパイ", result2.title);
     }
   }
 }

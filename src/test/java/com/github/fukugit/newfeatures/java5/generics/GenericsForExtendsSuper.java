@@ -10,65 +10,65 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("ジェネリクスのextendsとsuperの動作確認をします。")
-public class GenericsForExtendsSuper {
+class GenericsForExtendsSuper {
 
   /**
-   * 本棚クラス<br>
-   * 本のListを持つクラスです。<br>
-   * 本の型はジェネリクス指定しているので、Stringでもオリジナルクラスでもどのような型でもOKです。<br>
-   * コンストラクタでextends指定しているため、ジェネリクスへ指定した型の子クラスもListへ入れることが可能です。<br>
+   * 本棚クラス
+   * 本のListを持つクラスです。
+   * 本の型はジェネリクス指定しているので、Stringでもオリジナルクラスでもどのような型でもOKです。
+   * コンストラクタでextends指定しているため、ジェネリクスへ指定した型の子クラスもListへ入れることが可能です。
    * <br>
    * 注意：このクラス内のT(ジェネリクス)は全てObjectとして扱われます。
    * @param <T> 本を表現するクラスを指定して下さい。
    */
-  public class BookShelf<T> {
+  private class BookShelf<T> {
     List<T> bookList;
 
     /**
-     * コンストラクタ<br>
-     * extendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。<br>
+     * コンストラクタです。
+     * ジェネリクスへextendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。
      * @param bookList プロデューサ(供給)なので、Tを継承しているクラスのリストを指定します。
      */
-    public BookShelf(List<? extends T> bookList) {
+    BookShelf(List<? extends T> bookList) {
       this.bookList = new ArrayList<>(bookList);
     }
 
     /**
-     * リストへpushします。<br>
-     * extendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。<br>
+     * リストへpushします。
+     * ジェネリクスへextendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。
      * @param t プロデューサ(供給)なので、Tを継承しているクラスのリストを指定します。
      */
-    public void pushAll(List<? extends T> t) {
+    void pushAll(List<? extends T> t) {
       bookList.addAll(t);
     }
 
     /**
-     * 指定されたリストへ、bookListをaddします。<br>
-     * superを使っているので、引数へ渡す時のListの型はTかTの親クラスでなければいけません。<br>
+     * 指定されたリストへ、bookListをaddします。
+     * ジェネリクスへsuperを使っているので、引数へ渡す時のListの型はTかTの親クラスでなければいけません。
      * @param t コンシューマ(消費)なので、Tの親クラスのリストを指定します。
      */
-    public void popAll(List<? super T> t) {
+    void popAll(List<? super T> t) {
       t.addAll(bookList);
     }
   }
 
   /** 小説クラス */
-  public class Novel extends Book {
-    public Novel(String title) {
+  private class Novel extends Book {
+    Novel(String title) {
       super(title);
     }
   }
 
   /** 雑誌クラス */
-  public class Magazine extends Book {
-    public Magazine(String title) {
+  private class Magazine extends Book {
+    Magazine(String title) {
       super(title);
     }
   }
 
   /** 本関連クラスのベースクラスです。 */
-  public abstract class Book {
-    public Book(String title) {
+  abstract class Book {
+    private Book(String title) {
       this.title = title;
     }
     String title;
@@ -76,7 +76,7 @@ public class GenericsForExtendsSuper {
 
   @Nested
   @DisplayName("BookShelfにBookを指定します。")
-  public class NovelToGenerics {
+  class NovelToGenerics {
     @Test
     @DisplayName("bookListの値をセット/取得します。")
     void test1() {

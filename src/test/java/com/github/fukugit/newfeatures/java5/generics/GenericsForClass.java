@@ -1,6 +1,5 @@
 package com.github.fukugit.newfeatures.java5.generics;
 
-import com.github.fukugit.newfeatures.keymap.Magazin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,49 +10,49 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("クラスにジェネリクス指定した場合の動作確認です。")
-public class GenericsForClass {
+class GenericsForClass {
 
   /**
-   * 本棚クラス<br>
-   * 本のListとベストブックを持つクラスです。<br>
-   * 本の型はジェネリクス指定しているので、Stringでも独自クラスでもどのような型でもOKです。<br>
+   * 本棚クラス
+   * 本のListとベストブックを持つクラスです。
+   * 本の型はジェネリクス指定しているので、Stringでも独自クラスでもどのような型でもOKです。
    * <br>
    * 注意：このクラス内のT(ジェネリクス)は全てObjectとして扱われます。
    * @param <T> 本を表現するクラスを指定して下さい。
    */
-  public class BookShelf<T> {
+   private class BookShelf<T> {
     List<T> bookList;
     T best;
 
-    public BookShelf(List<T> bookList, T best) {
+    BookShelf(List<T> bookList, T best) {
       this.bookList = new ArrayList<>(bookList);
       this.best = best;
     }
 
-    public void pushAll(List<T> t) {
+    void pushAll(List<T> t) {
       bookList.addAll(t);
     }
-    public void popAll(List<T> t) {
+    void popAll(List<T> t) {
       t.addAll(bookList);
     }
-    public void setBest(T t) {
+    void setBest(T t) {
       best = t;
     }
-    public T getBest() {
+    T getBest() {
       return best;
     }
   }
 
   /** 小説クラス */
-  public class Novel extends Book {
-    public Novel(String title) {
+  private class Novel extends Book {
+    Novel(String title) {
       super(title);
     }
   }
 
   /** 雑誌クラス */
-  public class Magazine extends Book {
-    public Magazine(String title) {
+  private class Magazine extends Book {
+    Magazine(String title) {
       super(title);
     }
   }
@@ -61,8 +60,8 @@ public class GenericsForClass {
   /**
    * 本関連クラスのベースクラスです。
    */
-  public abstract class Book {
-    public Book(String title) {
+  private abstract class Book {
+    Book(String title) {
       this.title = title;
     }
     String title;
@@ -70,7 +69,7 @@ public class GenericsForClass {
 
   @Nested
   @DisplayName("BookShelfにNovelを指定します。")
-  public class NovelToGenerics {
+  class NovelToGenerics {
     @Test
     @DisplayName("bestとbookListの値をセット/取得します。")
     void test1() {
@@ -92,7 +91,7 @@ public class GenericsForClass {
 
   @Nested
   @DisplayName("BookShelfにMagazineを指定します。")
-  public class MagazineToGenerics {
+  class MagazineToGenerics {
     @Test
     @DisplayName("bestとbookListの値をセット/取得します。")
     void test1() {
@@ -114,7 +113,7 @@ public class GenericsForClass {
 
   @Nested
   @DisplayName("BookShelfにStringを指定します。")
-  public class StringToGenerics {
+  class StringToGenerics {
     @Test
     @DisplayName("bestとbookListの値をセット/取得します。")
     void test1() {

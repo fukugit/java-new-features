@@ -1,8 +1,5 @@
 # java-new-features
-![](https://img.shields.io/badge/Initial%20creation-Jan%202019-brightgreen.svg)  
-
-This project is the cheat sheet of Java for each version, which is from java 5 to 11.    
-<br/>
+Just for learning java, this project says way of new feature in each java versions.  
 
 ## Description
 The below are main contents in this project.  
@@ -10,9 +7,11 @@ Java 5 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features
 Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features/wiki/Cheat-sheet-for-Java-8).  
 
 #### Java5
-1. [Generics for Method](src/main/java/jp/co/example/java5/GenericsOfMethod.java).  
-2. [Generics for Class](src/main/java/jp/co/example/java5/GenericsOfClass.java).
-3. [Enum](src/main/java/jp/co/example/java5/EnumFeature.java).
+##### Generics
+1. [クラスへGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForClass.java)  
+2. [インターフェースへGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForInterface.java)  
+3. [PECSで指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForExtendsSuper.java)  
+4. [メソッドでGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForMethod.java)  
 
 #### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
@@ -27,33 +26,23 @@ Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features
 
 ## Demo
 None.  
-<br/>
 
 ## Dependency
-None  
-<br/>
-
-## Requirements
-Java  
-Maven  
-<br/>
+1. JUnit5  
 
 ## Usage
-1. Run the each class on IDE.  
-<br/>
+1. Run the each JUnit classes on IDE.  
 
 ## References
-none.  
-<br/>
-
-## Licence
-MIT
-<br/>
-
-## Authors
-[fukugit](https://github.com/fukugit)
-<br/>
+### Open JDK references
+[Java8 new features](https://openjdk.java.net/projects/jdk8/features)  
+[Java9 new features](https://openjdk.java.net/projects/jdk9/)  
+[Java10 new features](https://openjdk.java.net/projects/jdk/10/)  
+[Java11 new features](https://openjdk.java.net/projects/jdk/11/)  
+[Java12 new features](https://openjdk.java.net/projects/jdk/12/)  
+[Java13 new features](https://openjdk.java.net/projects/jdk/13/)  
+[Java14 new features](https://openjdk.java.net/projects/jdk/14/)  
+[Java15 new features](https://openjdk.java.net/projects/jdk/15/)  
 
 ## Conclusion
-The each version of Java are always had us excited.  
-
+Good Java life.  
