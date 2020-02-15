@@ -8,10 +8,10 @@ Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features
 
 #### Java5
 ##### Generics
-1. [クラスへGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForClass.java)  
-2. [インターフェースへGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForInterface.java)  
-3. [PECSで指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForExtendsSuper.java)  
-4. [メソッドでGenerics指定したケース](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForMethod.java)  
+1. [クラスへGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForClass.java)  
+2. [インターフェースへGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForInterface.java)  
+3. [メソッド引数のCollectionへPECSでGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForExtendsSuper.java)  
+4. [staticメソッド引数でGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForMethod.java)  
 
 #### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
