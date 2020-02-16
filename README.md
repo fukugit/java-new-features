@@ -12,6 +12,8 @@ Java 8 Cheat sheet is [Cheat sheet](https://github.com/fukugit/java-new-features
 2. [インターフェースへGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForInterface.java)  
 3. [メソッド引数のCollectionへPECSでGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForExtendsSuper.java)  
 4. [staticメソッド引数でGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForMethod.java)  
+5. [staticメソッド引数でワイルドカードGenericsを指定します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForWildcard.java)  
+6. [再帰型境界のGenericsを指定したメソッドを確認します。](src/test/java/com/github/fukugit/newfeatures/java5/generics/GenericsForCollections.java)  
 
 #### Java8
 1. [Lambda](src/main/java/jp/co/example/java8/LambdaFeature.java)  
