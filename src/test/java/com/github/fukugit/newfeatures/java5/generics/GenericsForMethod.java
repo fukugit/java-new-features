@@ -8,8 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("staticメソッドにジェネリクス指定した場合の動作確認です。")
 class GenericsForMethod {
-  private static <T> T get(T name) {
-    return name;
+  static <T> T get(T t) {
+    return t;
+  }
+
+  static <T extends Number> T plus(T t1) {
+    return t1;
   }
 
   @Nested
