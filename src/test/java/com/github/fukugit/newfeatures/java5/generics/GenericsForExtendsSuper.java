@@ -13,42 +13,63 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GenericsForExtendsSuper {
 
   /**
-   * 本棚クラス
-   * 本のListを持つクラスです。
-   * 本の型はジェネリクス指定しているので、Stringでもオリジナルクラスでもどのような型でもOKです。
-   * コンストラクタでextends指定しているため、ジェネリクスへ指定した型の子クラスもListへ入れることが可能です。
-   * <br>
-   * 注意：このクラス内のT(ジェネリクス)は全てObjectとして扱われます。
+   * PECS(Producer extends and Consumer super)を学ぶためのクラスです。
+   * <p>PECSとは、{@code <? extends T>}や{@code <? super T>}のことを表しています。
+   * {@code <? extends T>}のことは、プロデューサ(供給)と呼びます。
+   * {@code <? super T>}のことは、コンシューマ(消費)と呼びます。
+   *
+   * <p>{@code <? extends T>}は、ジェネリクスで指定した子クラスを表現しています。
+   * 例えば、ジェネリクスに{@link Number}を指定して場合の{@code <? extends T>}は、
+   * {@link Long}や{@link Integer}が指定可能です。
+   *
+   * <p>{@code <? super T>}は、ジェネリクスで指定した親クラスを表現しています。
+   * 例えば、ジェネリクスに{@link Long}を指定した場合の{@code <? super T>}は、
+   * {@link Number}や{@link Object}が指定可能です。
+   *
+   * <p>一般的には、クラス内のメンバ変数へ値をセットする時は、
+   * {@code <? extends T>}でジェネリクスの子クラスをセットして、
+   * メンバ変数の値を取得するときは{@code <? super T>}で親クラスを取得します。
+   *
    * @param <T> 本を表現するクラスを指定して下さい。
    */
   private class BookShelf<T> {
     List<T> bookList;
 
     /**
-     * コンストラクタです。
-     * ジェネリクスへextendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。
-     * @param bookList プロデューサ(供給)なので、Tを継承しているクラスのリストを指定します。
+     * @param bookList {@code <? extends T>}なのでTの子クラスのリストを指定して下さい。
      */
     BookShelf(List<? extends T> bookList) {
       this.bookList = new ArrayList<>(bookList);
     }
 
     /**
-     * リストへpushします。
-     * ジェネリクスへextendsを指定しているので、引数へ渡す時のListの型はTかTの子クラスでなければいけません。
-     * @param t プロデューサ(供給)なので、Tを継承しているクラスのリストを指定します。
+     * メンバ変数へpushします。
+     * @param t {@code <? extends T>}なのでTの子クラスのリストを指定して下さい。
      */
     void pushAll(List<? extends T> t) {
       bookList.addAll(t);
     }
 
     /**
-     * 指定されたリストへ、bookListをaddします。
-     * ジェネリクスへsuperを使っているので、引数へ渡す時のListの型はTかTの親クラスでなければいけません。
-     * @param t コンシューマ(消費)なので、Tの親クラスのリストを指定します。
+     * メンバ変数の値を引数へaddします。
+     * @param t {@code <? extends T>}なのでTの親クラスのリストを指定して下さい。
      */
     void popAll(List<? super T> t) {
       t.addAll(bookList);
+    }
+
+    /**
+     * @return 戻り値に{@code <? extends T>}や{@code <? super T>}を指定しても意味がありません。
+     */
+     List<? super T> getList1() {
+       return bookList;
+     }
+
+    /**
+     * @return 戻り値のジェネリクスはこちらが妥当です。
+     */
+    List<T> getList2() {
+      return bookList;
     }
   }
 
