@@ -15,22 +15,18 @@ class GenericsForExtendsSuper {
   /**
    * PECS(Producer extends and Consumer super)を学ぶためのクラスです。
    * <p>PECSとは、{@code <? extends T>}や{@code <? super T>}のことを表しています。
-   * {@code <? extends T>}のことは、プロデューサ(供給)と呼びます。
-   * {@code <? super T>}のことは、コンシューマ(消費)と呼びます。
+   * {@code <? extends T>}のことは、Producer(供給)と呼びます。
+   * {@code <? super T>}のことは、Consumer(消費)と呼びます。
    *
-   * <p>{@code <? extends T>}は、ジェネリクスで指定した子クラスを表現しています。
-   * 例えば、ジェネリクスに{@link Number}を指定して場合の{@code <? extends T>}は、
-   * {@link Long}や{@link Integer}が指定可能です。
+   * <p>Producerは、ジェネリクスで指定した<b>子クラス</b>を表現しています。
+   * 例えば、メソッド{@code pushAll(List<? extends T> t)}の T が Number だった場合は、
+   * 引数に対して Long や Integer のリストが指定可能です。
+   * 一般的にクラス内のメンバ変数に対して値をセットする時は、Producerを指定します。
    *
-   * <p>{@code <? super T>}は、ジェネリクスで指定した親クラスを表現しています。
-   * 例えば、ジェネリクスに{@link Long}を指定した場合の{@code <? super T>}は、
-   * {@link Number}や{@link Object}が指定可能です。
-   *
-   * <p>一般的には、クラス内のメンバ変数へ値をセットする時は、
-   * {@code <? extends T>}でジェネリクスの子クラスをセットして、
-   * メンバ変数の値を取得するときは{@code <? super T>}で親クラスを取得します。
-   *
-   * @param <T> 本を表現するクラスを指定して下さい。
+   * <p>Consumerは、ジェネリクスで指定した<p>親クラス</b>を表現しています。
+   * 例えば、メソッド{@code popAll(List<? super T> t)}の T が Long だった場合は、
+   * 引数に対して Number や Object のリストが指定可能です。
+   * 一般的にクラス内のメンバ変数から値取得する時は、Consumerを指定します。
    */
   private class BookShelf<T> {
     List<T> bookList;
